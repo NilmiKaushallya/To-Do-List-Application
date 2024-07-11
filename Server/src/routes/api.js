@@ -3,6 +3,8 @@ import Register from "../controllers/Register.controller.js";
 import { RegisterSchema } from "../validatorSchema/RegisterSchema.js";
 import Login from "../controllers/Login.controller.js";
 import { LoginSchema } from "../validatorSchema/LoginSchema.js";
+import { createTodo } from "../controllers/Todo.controller.js";
+import { check } from "express-validator";
 
 const apiRoute = express.Router();
 export const apiProtected = express.Router();
@@ -14,7 +16,7 @@ apiRoute.post('/login',LoginSchema,Login);
 
 //protected routes
 
-//apiProtected.post("/createTodo", createTodo);
+apiProtected.post("/createTodo", [check("desc", "Todo desc is required").exists()], createTodo);
 
 export default apiRoute;
 
