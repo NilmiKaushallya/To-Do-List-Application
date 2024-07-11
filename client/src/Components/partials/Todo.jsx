@@ -6,6 +6,8 @@ import { toast } from 'react-toastify';
 function Todo({ todo, setRefreshList }) {
   const [editMode, setEditMode] = useState(false); // State to toggle edit mode
   const [newDesc, setNewDesc] = useState(todo.desc); // State to store new description
+  const [dueDate, setDueDate] = useState(todo.dueDate); // State to store due date
+  const [title, setTitle] = useState(todo.title); // State to store title
 
   const handleDelete = async () => {
     const result = await deleteTodoApi({
@@ -34,9 +36,18 @@ function Todo({ todo, setRefreshList }) {
   };
 
   const handleUpdateTodo = async () => {
+    // Validate due date against current date
+    const currentDate = moment().format('YYYY-MM-DD');
+    if (moment(dueDate).isBefore(currentDate)) {
+      toast('Due date cannot be earlier than today');
+      return;
+    }
+
     const result = await UpdateTodoApi({
       todo_id: todo._id,
+      title: title,
       desc: newDesc,
+      dueDate: dueDate,
     });
     console.log('Update todo', result);
     if (result.data.status === 200) {
@@ -51,22 +62,47 @@ function Todo({ todo, setRefreshList }) {
   return (
     <div className='col-sm-3 mx-3 my-2 alert bg-light'>
       <div className='card-header'>
-        {todo.isCompleted ? 'Completed' : 'Not Completed'}
+        <h3>{title}</h3>
+        <p className='card-title'>{todo.isCompleted ? 'Completed' : 'Not Completed'}</p>
+        <h5 className='card-text'>{moment(todo.dueDate).format('MMMM Do YYYY')}</h5>
       </div>
       <div className='card-body'>
         {editMode ? (
-          <input
-            type='text'
-            value={newDesc}
-            onChange={(e) => setNewDesc(e.target.value)}
-          />
+          <>
+          <br />
+            <input
+              type='text'
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              className='form-control mb-2'
+              placeholder='Title'
+            />
+            <input
+              type='text'
+              value={newDesc}
+              onChange={(e) => setNewDesc(e.target.value)}
+              className='form-control mb-2'
+              placeholder='Description'
+            />
+            <input
+              type='date'
+              value={dueDate ? moment(dueDate).format('YYYY-MM-DD') : ''}
+              onChange={(e) => setDueDate(e.target.value)}
+              className='form-control'
+              placeholder='Due Date'
+            />
+          </>
         ) : (
-          <h4
-            className='card-title'
-            style={{ textDecoration: todo.isCompleted ? 'line-through' : 'none' }}
-          >
-            {todo.desc}
-          </h4>
+          <>
+          <br />
+            <p
+              className='card-title'
+              style={{ textDecoration: todo.isCompleted ? 'line-through' : 'none' }}
+            >
+              {todo.desc}
+            </p>
+            <br />
+          </>
         )}
         <p className='card-text'>{moment(todo.date).fromNow()}</p>
       </div>
@@ -78,9 +114,9 @@ function Todo({ todo, setRefreshList }) {
         <div className='deletebutton'>
           <button
             type="button"
-            className="btn btn-outline-danger btn-sm"  // Added 'btn-sm' for small size and changed to 'btn-outline-danger'
+            className="btn btn-outline-danger btn-sm"
             onClick={handleDelete}
-            style={{ background: '', fontSize: '0.8rem', padding: '0.40rem 0.8rem' }}  // Adjusted font size and padding for further customization
+            style={{ background: '', fontSize: '0.8rem', padding: '0.40rem 0.8rem' }}
           >
             Delete
           </button>

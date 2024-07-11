@@ -6,8 +6,16 @@ const todoSchema=mongoose.Schema({
         ref: "User",
         required: true,
     },
+    title: {
+        type: String,
+        required: true,
+    },
     desc: {
         type: String,
+        required: true,
+    },
+    dueDate: {  // New field for due date
+        type: Date,
         required: true,
     },
     isCompleted: {

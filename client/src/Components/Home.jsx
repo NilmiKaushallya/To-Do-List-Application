@@ -4,7 +4,7 @@ import Todo from './partials/Todo'
 import AddTodoModal from './partials/AddTodoModal'
 import { useNavigate } from 'react-router-dom'
 import { getTodoApi, getToken } from '../Services/api'
-import {ToastContainer, toast } from 'react-toastify';
+import {ToastContainer} from 'react-toastify';
 
 function Home () {
 
