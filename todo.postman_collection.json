@@ -1,0 +1,219 @@
+{
+	"info": {
+		"_postman_id": "db6723d7-5685-4526-9ebe-97507dce62cb",
+		"name": "todo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29539615"
+	},
+	"item": [
+		{
+			"name": "register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"username\":\"mmeeeeemfffmmmm\", \"password\":\"ddddddddddddddd\",\"email\":\"eeeeedd@gmail.com\",\"name\":\"mmmmmmmmmmm\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"username\":\"12mmaa\", \"password\":\"d78w\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createTodo",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/createTodo",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"createTodo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getToDoList",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "auth",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjhmNjAxMjdmZjE4NzBjNDZjNDAwYTQiLCJpYXQiOjE3MjA2NzMwNTF9.HxRdVjje7adGp4jPRMwp-_Irvhyp7hIAV8N-YtOwDng",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8000/api/todolist",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"todolist"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "markToDo",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "auth",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjhmNjAxMjdmZjE4NzBjNDZjNDAwYTQiLCJpYXQiOjE3MjA2NzMwNTF9.HxRdVjje7adGp4jPRMwp-_Irvhyp7hIAV8N-YtOwDng",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"todo_id\": \"668f79e3fcb210b3da84fb0d\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/marktodo",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"marktodo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateToDo",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "auth",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjhmNjAxMjdmZjE4NzBjNDZjNDAwYTQiLCJpYXQiOjE3MjA2NzMwNTF9.HxRdVjje7adGp4jPRMwp-_Irvhyp7hIAV8N-YtOwDng",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"todo_id\": \"668f79e3fcb210b3da84fb0d\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/marktodo",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"marktodo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteToDo",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "auth",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjhmNjAxMjdmZjE4NzBjNDZjNDAwYTQiLCJpYXQiOjE3MjA2NzMwNTF9.HxRdVjje7adGp4jPRMwp-_Irvhyp7hIAV8N-YtOwDng",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"todo_id\": \"668f79e3fcb210b3da84fb0d\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/marktodo",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"marktodo"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
