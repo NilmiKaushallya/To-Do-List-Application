@@ -5,16 +5,32 @@ import mongoose from "mongoose";
 import AuthMiddleware from "./middlewares/AuthMiddleware.js";
 import cors from 'cors';
 
-
 const app = express();
+const PORT = 8000;
 
-mongoose.connect(DB_CONNECT,{useNewUrlParse:true},(e)=>console.log(e));
+async function initializeServer() {
+    try {
+        // Connect to MongoDB
+        await mongoose.connect(DB_CONNECT, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true
+        });
+        console.log('Connected to MongoDB');
 
-const PORT =8000;
+        // Middleware
+        app.use(cors());
+        app.use(express.json());
 
-app.use(cors())
-app.use(express.json());
-app.use('/api/',apiRoute);
-app.use('/api/',AuthMiddleware,apiProtected);
+        // Routes
+        app.use('/api/', apiRoute);
+        app.use('/api/', AuthMiddleware, apiProtected);
 
-app.listen(PORT,()=>console.log('server is running'))
+        // Start the server
+        app.listen(PORT, () => console.log('Server is running on port', PORT));
+    } catch (err) {
+        console.error('Failed to connect to MongoDB', err);
+        process.exit(1);
+    }
+}
+
+initializeServer();

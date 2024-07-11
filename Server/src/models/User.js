@@ -3,7 +3,6 @@ import mongoose from "mongoose";
 const userSchema=mongoose.Schema({
     name:{
         type:String,
-        
     },
     username:{
         type:String,
@@ -23,7 +22,7 @@ const userSchema=mongoose.Schema({
         max:32,
         required:true,
     },
-    Date:{
+    date:{
         type:Date,
         default:Date.now,
     }

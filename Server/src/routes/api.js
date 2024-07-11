@@ -10,6 +10,8 @@ export const apiProtected = express.Router();
 apiRoute.post('/register',RegisterSchema,Register);
 apiRoute.post('/login',LoginSchema,Login);
 
+// apiRoute.post('/login', (req, res)=>res.send("login"));
+
 //protected routes
 
 //apiProtected.post("/createTodo", createTodo);

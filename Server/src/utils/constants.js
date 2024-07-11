@@ -1,6 +1,6 @@
 export const DB_CONNECT="mongodb://localhost:27017/todoapp";
 
-export const JWT_TOKEN_SECRET = "";
+export const JWT_TOKEN_SECRET = "gdhh";
 
 export const StatusCode={
     SUCCESS:200,
