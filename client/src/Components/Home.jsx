@@ -62,7 +62,7 @@ useEffect(() => {
       data-bs-toggle='modal'
       data-bs-target='#exampleModal'
       className='btn btn-outline-light'>
-        Add
+        + Add
       </button>
       </div>
 

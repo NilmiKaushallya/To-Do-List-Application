@@ -60,7 +60,7 @@ import { Link, useNavigate } from 'react-router-dom'
       {
       user &&
       <form className="d-flex">
-        <input className="form-control me-sm-2" type="search" placeholder="Search"
+        <input className="form-control me-sm-2" type="search" placeholder="Search To Do"
         value={searchText}
         onChange={(e) => setSearchText(e.target.value)}/>
         <button className="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>

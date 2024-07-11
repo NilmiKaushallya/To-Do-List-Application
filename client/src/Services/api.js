@@ -1,5 +1,5 @@
 import axios from "axios";
-import {LOGIN, MARK_TODO} from './apiConstants.js';
+import {LOGIN, MARK_TODO, UPDATE_TODO} from './apiConstants.js';
 import {REGISTER} from './apiConstants.js';
 import {CREATE_TODO} from './apiConstants.js';
 import {TODO_LIST} from './apiConstants.js';
@@ -50,6 +50,16 @@ export const MarkTodoApi = async (data) =>{
     let token = getToken();
 
     return axios.post(MARK_TODO, data, {
+        headers: {
+            auth: token
+        }
+    })
+}
+
+export const UpdateTodoApi = async (data) =>{
+    let token = getToken();
+
+    return axios.post(UPDATE_TODO, data, {
         headers: {
             auth: token
         }
