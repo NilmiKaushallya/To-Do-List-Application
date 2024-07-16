@@ -8,12 +8,20 @@ function AddTodoModal({ setRefreshList }) {
   const [title, setTitle] = useState('');
 
   const handleTodoSubmit = async () => {
+    if (title === "") {
+      console.log("Todo title is required");
+      toast("Todo title is required");
+      return;
+    }
+    
     if (todoDesc === '') {
+      console.log("Todo description is required");
       toast('Todo description is required');
       return;
     }
 
     if (dueDate && new Date(dueDate) < new Date()) {
+      console.log("Todo due is required");
       toast('Due date cannot be earlier than today');
       return;
     }
@@ -56,6 +64,11 @@ function AddTodoModal({ setRefreshList }) {
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
                 placeholder='Title'
+                onBlur={() => {
+                if (title === '') {
+                  console.log("error: title field is empty");
+                }
+              }}
               />
             </div>
             <div className='form-group mt-2'>

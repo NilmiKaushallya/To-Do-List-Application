@@ -60,88 +60,107 @@ function Todo({ todo, setRefreshList }) {
   };
 
   return (
-    <div className='col-sm-3 mx-3 my-2 alert bg-light'>
-      <div className='card-header'>
+    <div className="col-sm-3 mx-3 my-2 alert bg-light">
+      <div className="card-header">
         <h3>{title}</h3>
-        <p className='card-title'>{todo.isCompleted ? 'Completed' : 'Not Completed'}</p>
-        <h5 className='card-text'>{moment(todo.dueDate).format('MMMM Do YYYY')}</h5>
+        <p className="card-title">
+          {todo.isCompleted ? "Completed" : "Not Completed"}
+        </p>
+        <h5 className="card-text">
+          {moment(todo.dueDate).format("MMMM Do YYYY")}
+        </h5>
       </div>
-      <div className='card-body'>
+      <div className="card-body">
         {editMode ? (
           <>
-          <br />
+            <br />
             <input
-              type='text'
+              type="text"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              className='form-control mb-2'
-              placeholder='Title'
+              className="form-control mb-2"
+              placeholder="Title"
+              
             />
             <input
-              type='text'
+              type="text"
               value={newDesc}
               onChange={(e) => setNewDesc(e.target.value)}
-              className='form-control mb-2'
-              placeholder='Description'
+              className="form-control mb-2"
+              placeholder="Description"
             />
             <input
-              type='date'
-              value={dueDate ? moment(dueDate).format('YYYY-MM-DD') : ''}
+              type="date"
+              value={dueDate ? moment(dueDate).format("YYYY-MM-DD") : ""}
               onChange={(e) => setDueDate(e.target.value)}
-              className='form-control'
-              placeholder='Due Date'
+              className="form-control"
+              placeholder="Due Date"
             />
           </>
         ) : (
           <>
-          <br />
+            <br />
             <p
-              className='card-title'
-              style={{ textDecoration: todo.isCompleted ? 'line-through' : 'none' }}
+              className="card-title"
+              style={{
+                textDecoration: todo.isCompleted ? "line-through" : "none",
+              }}
             >
               {todo.desc}
             </p>
             <br />
           </>
         )}
-        <p className='card-text'>{moment(todo.date).fromNow()}</p>
+        <p className="card-text">{moment(todo.date).fromNow()}</p>
       </div>
       <br></br>
       <div
-        className='actionbuttons'
-        style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
+        className="actionbuttons"
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
       >
-        <div className='deletebutton'>
+        <div className="deletebutton">
           <button
             type="button"
             className="btn btn-outline-danger btn-sm"
             onClick={handleDelete}
-            style={{ background: '', fontSize: '0.8rem', padding: '0.40rem 0.8rem' }}
+            style={{
+              background: "",
+              fontSize: "0.8rem",
+              padding: "0.40rem 0.8rem",
+            }}
           >
             Delete
           </button>
         </div>
-        <div className='markTodo'>
+        <div className="markTodo">
           <button
             type="button"
             className="btn btn-outline-success btn-sm"
             onClick={handleMarkTodo}
             style={{
-              background: todo.isCompleted ? 'lightblue' : '',
-              fontSize: '0.8rem',
-              padding: '0.40rem 0.8rem'
+              background: todo.isCompleted ? "lightblue" : "",
+              fontSize: "0.8rem",
+              padding: "0.40rem 0.8rem",
             }}
           >
-            {todo.isCompleted ? 'Mark uncomplete' : 'Mark complete'}
+            {todo.isCompleted ? "Mark uncomplete" : "Mark complete"}
           </button>
         </div>
-        <div className='updateTodo'>
+        <div className="updateTodo">
           {editMode ? (
             <button
               type="button"
               className="btn btn-outline-success btn-sm"
               onClick={handleUpdateTodo}
-              style={{ background: 'green', fontSize: '0.8rem', padding: '0.40rem 0.8rem' }}
+              style={{
+                background: "green",
+                fontSize: "0.8rem",
+                padding: "0.40rem 0.8rem",
+              }}
             >
               Save
             </button>
@@ -150,7 +169,11 @@ function Todo({ todo, setRefreshList }) {
               type="button"
               className="btn btn-outline-warning btn-sm"
               onClick={() => setEditMode(true)}
-              style={{ background: 'orange', fontSize: '0.8rem', padding: '0.40rem 0.8rem' }}
+              style={{
+                background: "orange",
+                fontSize: "0.8rem",
+                padding: "0.40rem 0.8rem",
+              }}
             >
               Edit
             </button>

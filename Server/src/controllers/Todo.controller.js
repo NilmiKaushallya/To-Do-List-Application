@@ -5,25 +5,33 @@ import { StatusCode } from "../utils/constants.js";
 import { jsonGenerate } from "../utils/helpers.js";
 
 export const createTodo = async (req, res) => {
-  const error = validationResult(req);
-  if (!error.isEmpty()) {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
     return res.json(
       jsonGenerate(
         StatusCode.VALIDATION_ERROR,
         "Validation error",
-        error.mapped()
+        errors.array()
       )
     );
   }
 
-  const { title, desc, dueDate } = req.body; // Extract title, desc, and dueDate from req.body
+  const { title, desc, dueDate } = req.body;
 
   try {
+    if (!title) {
+      console.log("Title field cannot be empty");
+      return res.json(
+        jsonGenerate(StatusCode.VALIDATION_ERROR, "Title field cannot be empty")
+      );
+      
+    }
+
     const newTodo = {
       userId: req.userId,
       title: title,
-      desc: desc,
-      dueDate: dueDate || null,  // Set dueDate if provided, otherwise default to null
+      desc: desc || "",
+      dueDate: dueDate || null,
     };
 
     const result = await Todo.create(newTodo);
@@ -42,7 +50,7 @@ export const createTodo = async (req, res) => {
       jsonGenerate(
         StatusCode.UNPROCESSABLE_ENTITY,
         "Something went wrong",
-        error
+        error.message || error
       )
     );
   }
